@@ -13,7 +13,7 @@ body {
 }
 
 header {
-    padding: 1rem 2rem; /* Ajustado para dar aire al logo */
+    padding: 1.5rem 2rem; /* Ajustado para dar aire al logo */
     background: #fff;
     border-bottom: 1px solid #eee;
     position: sticky;
@@ -30,9 +30,9 @@ nav {
 }
 
 /* Ajustes para el logo */
-.logo img {
-    height: 60px; /* Tamaño mayor del logo */
-    width: auto;
+.logo-img {
+    height: 80px; /* Tamaño mayor del logo */
+    width: auto !important;
     display: block;
 }
 
@@ -99,3 +99,4 @@ nav a:hover {
     margin-top: 4rem;
     font-size: 2rem;
 }
+
