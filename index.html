@@ -21,12 +21,13 @@
         </a>
         
         <div class="nav-right">
-            <ul>
+            <ul id="nav-links">
                 <li><a href="#proyectos">Proyectos</a></li>
                 <li><a href="#sobre-mi">Sobre mí</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
             <button id="theme-toggle">🌓</button>
+            <button id="menu-toggle" class="mobile-menu-btn">☰</button>
         </div>
     </nav>
 </header>
@@ -37,7 +38,7 @@
     </section>
 
     <main id="proyectos">
-        <h2 class="section-title">Proyectos Destacados</h2>
+        <h2 class="section-title" style="text-align: center;">Proyectos Destacados</h2>
         <div class="grid-proyectos">
             <div class="card">
                 <div class="imagen-placeholder">Proyecto 01</div>
@@ -68,14 +69,22 @@
     </footer>
     
    <script>
+    // Toggle de Modo Oscuro
     document.getElementById('theme-toggle').addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
+    });
+
+    // Toggle de Menú Hamburguesa para móviles
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+        document.getElementById('nav-links').classList.toggle('active');
+    });
+
+    // Cerrar el menú automáticamente al tocar un enlace en móvil
+    document.querySelectorAll('#nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.getElementById('nav-links').classList.remove('active');
+        });
     });
 </script>
 </body>
 </html>
-
-
-
-
-
