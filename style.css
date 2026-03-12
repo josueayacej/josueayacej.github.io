@@ -1,7 +1,6 @@
 :root {
     --principal: #1a1a1a;
     --acento: #007bff;
-    --texto-claro: #f4f4f4;
     --gris-suave: #888;
 }
 
@@ -14,7 +13,7 @@ body {
 }
 
 header {
-    padding: 2rem;
+    padding: 1rem 2rem; /* Ajustado para dar aire al logo */
     background: #fff;
     border-bottom: 1px solid #eee;
     position: sticky;
@@ -30,10 +29,11 @@ nav {
     margin: 0 auto;
 }
 
-.logo {
-    font-weight: 700;
-    font-size: 1.5rem;
-    letter-spacing: 2px;
+/* Ajustes para el logo */
+.logo img {
+    height: 60px; /* Tamaño mayor del logo */
+    width: auto;
+    display: block;
 }
 
 nav ul {
@@ -45,23 +45,28 @@ nav ul {
 nav a {
     text-decoration: none;
     color: var(--principal);
-    font-weight: 400;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--acento);
 }
 
 #hero {
-    height: 60vh;
+    height: 50vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: #f9f9f9;
+    background: #fcfcfc;
 }
 
 .grid-proyectos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 2.5rem;
     padding: 4rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -69,20 +74,20 @@ nav a {
 
 .card {
     border: 1px solid #eee;
-    transition: transform 0.3s ease;
+    background: #fff;
+    transition: all 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
-.imagen-placeholder {
+.card img {
+    width: 100%;
     height: 250px;
-    background: #ddd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #999;
+    object-fit: cover;
+    display: block;
 }
 
 .info {
