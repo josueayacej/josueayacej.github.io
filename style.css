@@ -29,7 +29,7 @@ nav {
     margin: 0 auto;
 }
 
-/* --- NUEVO EFECTO DESLIZANTE --- */
+/* Efecto Deslizante del Logo */
 .logo-container {
     display: flex;
     align-items: center;
@@ -37,10 +37,11 @@ nav {
     overflow: hidden; 
     padding: 10px;
     cursor: pointer;
+    height: 60px;
 }
 
 .logo-img {
-    height: 60px;
+    height: 50px;
     width: auto !important;
     display: block;
     transition: transform 0.4s ease;
@@ -48,26 +49,27 @@ nav {
 }
 
 .logo-text {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     position: absolute;
     left: -100px; 
     transition: all 0.4s ease;
     z-index: 1; 
     opacity: 0;
+    white-space: nowrap;
 }
 
 .logo-container:hover .logo-text {
-    left: 70px; 
+    left: 60px; 
     opacity: 1;
 }
 
 .logo-container:hover .logo-img {
     transform: translateX(-10px);
 }
-/* ------------------------------- */
 
+/* Navegación */
 nav ul {
     list-style: none;
     display: flex;
@@ -115,11 +117,13 @@ nav a:hover {
     box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
-.card img {
-    width: 100%;
+.imagen-placeholder {
     height: 250px;
-    object-fit: cover;
-    display: block;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
 }
 
 .info {
