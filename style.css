@@ -30,45 +30,36 @@ nav {
 }
 
 /* Efecto Deslizante del Logo */
+.logo-link {
+    text-decoration: none;
+    color: var(--principal);
+    transition: transform 0.3s ease; /* Transición para el zoom */
+    display: inline-block;
+}
+
+.logo-link:hover {
+    transform: scale(1.05); /* Zoom del 5% */
+}
+
 .logo-container {
     display: flex;
     align-items: center;
-    position: relative;
-    padding: 10px;
+    gap: 15px; /* Espacio fijo entre logo y texto */
     cursor: pointer;
     height: 60px;
-    transition: width 0.4s ease; /* El contenedor se expande suavemente */
-    width: 60px; /* Ancho inicial (solo el logo) */
-    overflow: hidden; 
-}
-
-/* Cuando pasas el mouse, el contenedor se vuelve ancho */
-.logo-container:hover {
-    width: 200px; 
 }
 
 .logo-img {
     height: 50px;
-    min-width: 50px; /* Asegura que el logo no se encoja */
     width: auto !important;
     display: block;
-    transition: transform 0.4s ease;
-    z-index: 2;
 }
 
 .logo-text {
     font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: 2px;
-    position: absolute;
-    left: 60px; /* Aparece a la derecha del logo */
-    transition: all 0.4s ease;
-    opacity: 0;
     white-space: nowrap;
-}
-
-.logo-container:hover .logo-text {
-    opacity: 1;
 }
 
 /* Navegación */
@@ -137,4 +128,5 @@ nav a:hover {
     margin-top: 4rem;
     font-size: 2rem;
 }
+
 
