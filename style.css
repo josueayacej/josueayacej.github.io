@@ -6,7 +6,7 @@
     --acento: #38bdf8;
 }
 
-/* 1. ESTILOS BASE (Ahora en Modo Oscuro por defecto) */
+/* --- 1. ESTILOS BASE (Modo Oscuro por Defecto) --- */
 body {
     font-family: 'Inter', sans-serif;
     margin: 0;
@@ -15,13 +15,13 @@ body {
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* 2. CLASE PARA MODO CLARO (Se activará con el botón) */
+/* --- 2. CLASE PARA MODO CLARO --- */
 body.light-mode {
     background-color: var(--bg-light);
     color: var(--text-light);
 }
 
-/* --- LOGO --- */
+/* --- 3. LOGO Y HEADER --- */
 .logo-container {
     display: flex;
     align-items: center;
@@ -38,11 +38,11 @@ body.light-mode {
     transition: opacity 0.4s ease;
 }
 
-/* Por defecto (Oscuro): Logo blanco visible, logo negro oculto */
+/* Oscuro: Logo blanco visible */
 .logo-dark { opacity: 1; } 
 .logo-light { opacity: 0; } 
 
-/* Al pasar a modo claro: Logo blanco oculto, logo negro visible */
+/* Claro: Logo negro visible */
 body.light-mode .logo-dark { opacity: 0; }
 body.light-mode .logo-light { opacity: 1; }
 
@@ -53,7 +53,6 @@ body.light-mode .logo-light { opacity: 1; }
     letter-spacing: 2px;
 }
 
-/* --- NAVEGACIÓN --- */
 nav { 
     display: flex; 
     justify-content: space-between; 
@@ -63,9 +62,11 @@ nav {
     padding: 1rem 2rem; 
     position: relative; 
 }
+
 .nav-right { display: flex; align-items: center; gap: 20px; }
 nav ul { list-style: none; display: flex; gap: 2rem; margin: 0; padding: 0;}
-nav a { text-decoration: none; color: inherit; font-weight: 500; }
+nav a { text-decoration: none; color: inherit; font-weight: 500; transition: color 0.3s ease;}
+nav a:hover { color: var(--acento); }
 #theme-toggle { background: none; border: none; cursor: pointer; font-size: 1.2rem; }
 
 .mobile-menu-btn {
@@ -78,15 +79,13 @@ nav a { text-decoration: none; color: inherit; font-weight: 500; }
     margin-left: 10px;
 }
 
-/* --- HERO --- */
+/* --- 4. SECCIÓN HERO --- */
 #hero { padding: 5rem 2rem; text-align: center; }
 #hero h1 { font-size: 3rem; margin-bottom: 1rem; }
-
-/* Texto gris claro por defecto (Modo oscuro) */
 #hero p { font-size: 1.2rem; color: #94a3b8; } 
 body.light-mode #hero p { color: #64748b; }
 
-/* --- PROYECTOS (Tarjetas Premium) --- */
+/* --- 5. TARJETAS DE PROYECTOS --- */
 .grid-proyectos { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
@@ -96,7 +95,7 @@ body.light-mode #hero p { color: #64748b; }
     margin: 0 auto; 
 }
 
-/* Tarjeta por defecto (Modo oscuro) */
+/* Tarjeta en Modo Oscuro (Defecto) */
 .card { 
     background: #1e293b; 
     border-radius: 12px; 
@@ -122,46 +121,52 @@ body.light-mode .card:hover {
     box-shadow: 0 20px 40px rgba(0,0,0,0.12);
 }
 
+/* --- 6. VIDEOS DE YOUTUBE --- */
 .imagen-contenedor {
     width: 100%;
     height: 260px;
     overflow: hidden;
+    background-color: #0f172a; 
+    position: relative;
 }
 
-/* Placeholder por defecto (Modo oscuro) */
-.imagen-placeholder { 
-    background: #0f172a; 
-    color: #94a3b8; 
+body.light-mode .imagen-contenedor {
+    background-color: #f1f5f9;
+}
+
+.youtube-player {
     width: 100%;
-    height: 100%; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-weight: bold; 
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+    height: 100%;
+    transform: scale(1.15); /* Esconde bordes negros de YT */
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: none; /* Evita que el iframe robe los eventos de mouse */
 }
 
-body.light-mode .imagen-placeholder { 
-    background: #f1f5f9; 
-    color: #64748b; 
+.card:hover .youtube-player {
+    transform: scale(1.25); /* Zoom al hacer hover */
 }
 
-.card:hover .imagen-placeholder {
-    transform: scale(1.08);
+/* Escudo invisible para detectar el cursor */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    cursor: pointer;
 }
 
+/* --- 7. TEXTOS DE LA TARJETA --- */
 .info { padding: 1.5rem 1.5rem 2rem 1.5rem; }
 .info h3 { margin: 0 0 0.5rem 0; font-size: 1.25rem; }
-
-/* Texto info por defecto (Modo oscuro) */
 .info p { margin: 0; color: #94a3b8; font-size: 0.95rem; line-height: 1.6; }
 body.light-mode .info p { color: #64748b; }
 
-/* --- RESPONSIVE (Móviles) --- */
+/* --- 8. DISEÑO RESPONSIVO PARA MÓVILES --- */
 @media (max-width: 768px) {
     .mobile-menu-btn { display: block; }
 
-    /* Menú móvil por defecto (Modo oscuro) */
     nav ul {
         display: none; 
         flex-direction: column;
@@ -176,7 +181,6 @@ body.light-mode .info p { color: #64748b; }
         z-index: 100; 
     }
 
-    /* Menú móvil en Modo Claro */
     body.light-mode nav ul {
         background-color: var(--bg-light);
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -184,7 +188,8 @@ body.light-mode .info p { color: #64748b; }
 
     nav ul li { margin: 1rem 0; }
     nav ul.active { display: flex; }
+    
     #hero { padding: 3rem 1rem; }
-    #hero h1 { font-size: 2rem; }
+    #hero h1 { font-size: 2.2rem; }
     .grid-proyectos { padding: 2rem 1rem; }
 }
