@@ -26,7 +26,7 @@
                 <li><a href="#sobre-mi">Sobre mí</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
-            <button id="theme-toggle">🌓</button>
+            <button id="theme-toggle" title="Cambiar tema">🌓</button>
             <button id="menu-toggle" class="mobile-menu-btn">☰</button>
         </div>
     </nav>
@@ -40,27 +40,32 @@
     <main id="proyectos">
         <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">Proyectos Destacados</h2>
         <div class="grid-proyectos">
+            
             <div class="card">
                 <div class="imagen-contenedor">
-                    <div class="imagen-placeholder">Proyecto 01</div>
+                    <div id="youtube-player-1" class="youtube-player" data-video-id="dQw4w9WgXcQ"></div>
+                    <div class="video-overlay"></div>
                 </div>
                 <div class="info">
                     <h3>Levantamiento Arquitectónico</h3>
                     <p>Descripción breve del proyecto y herramientas usadas.</p>
                 </div>
             </div>
+
             <div class="card">
                 <div class="imagen-contenedor">
-                    <div class="imagen-placeholder">Proyecto 02</div>
+                    <div id="youtube-player-2" class="youtube-player" data-video-id="tgbNymZ7vqY"></div>
+                    <div class="video-overlay"></div>
                 </div>
                 <div class="info">
                     <h3>Diseño de Interiores</h3>
                     <p>Visualización avanzada y mantenimiento técnico.</p>
                 </div>
             </div>
+
         </div>
     </main>
-    
+
     <section id="sobre-mi">
         <div class="container" style="max-width: 800px; margin: 4rem auto; padding: 2rem; text-align: center;">
             <h2>Sobre el Estudio</h2>
@@ -69,28 +74,91 @@
     </section>
 
     <footer>
-        <p style="text-align: center; padding: 2rem;">&copy; 2026 Ayacej - Sahuayo, Michoacán.</p>
+        <p style="text-align: center; padding: 2rem; color: #64748b;">&copy; 2026 Ayacej - Sahuayo, Michoacán.</p>
     </footer>
     
-   <script>
-   // Toggle de Tema
-document.getElementById('theme-toggle').addEventListener('click', () => {
-    document.body.classList.toggle('light-mode'); // Cambia esto
-});
-
-    // Toggle de Menú Hamburguesa para móviles
-    document.getElementById('menu-toggle').addEventListener('click', () => {
-        document.getElementById('nav-links').classList.toggle('active');
-    });
-
-    // Cerrar el menú automáticamente al tocar un enlace en móvil
-    document.querySelectorAll('#nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            document.getElementById('nav-links').classList.remove('active');
+    <script>
+        // --- 1. TOGGLE DE TEMA (MODO CLARO/OSCURO) ---
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
         });
-    });
-</script>
+
+        // --- 2. MENÚ HAMBURGUESA PARA MÓVILES ---
+        document.getElementById('menu-toggle').addEventListener('click', () => {
+            document.getElementById('nav-links').classList.toggle('active');
+        });
+
+        document.querySelectorAll('#nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav-links').classList.remove('active');
+            });
+        });
+
+        // --- 3. LÓGICA DE YOUTUBE API PARA VIDEOS AL HOVER ---
+        
+        // Cargar el script de la API de YouTube asíncronamente
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var ytPlayers = [];
+
+        // Función llamada automáticamente cuando la API de YT está lista
+        function onYouTubeIframeAPIReady() {
+            const playerDivs = document.querySelectorAll('.youtube-player');
+            
+            playerDivs.forEach((div) => {
+                const videoId = div.getAttribute('data-video-id');
+                
+                const player = new YT.Player(div.id, {
+                    videoId: videoId,
+                    playerVars: {
+                        'autoplay': 0,
+                        'controls': 0,      
+                        'disablekb': 1,     
+                        'fs': 0,            
+                        'modestbranding': 1,
+                        'rel': 0,           
+                        'mute': 1,          // Silencio obligatorio para autoplay
+                        'loop': 1,
+                        'playlist': videoId // Necesario para loop en YT
+                    },
+                    events: {
+                        'onReady': onPlayerReady
+                    }
+                });
+                
+                ytPlayers.push({ player: player, card: div.closest('.card') });
+            });
+        }
+
+        // Asignar los eventos cuando cada video termina de cargar
+        function onPlayerReady(event) {
+            ytPlayers.forEach(item => {
+                if (event.target === item.player) {
+                    const overlay = item.card.querySelector('.video-overlay');
+
+                    // PC (Mouse)
+                    overlay.addEventListener('mouseenter', () => {
+                        item.player.playVideo();
+                    });
+
+                    overlay.addEventListener('mouseleave', () => {
+                        item.player.pauseVideo();
+                    });
+
+                    // Móvil (Touch)
+                    overlay.addEventListener('touchstart', () => {
+                        item.player.playVideo();
+                    }, {passive: true});
+
+                    overlay.addEventListener('touchend', () => {
+                        item.player.pauseVideo();
+                    });
+                }
+            });
+        }
+    </script>
 </body>
 </html>
-
-
