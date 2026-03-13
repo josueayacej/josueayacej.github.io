@@ -1,19 +1,21 @@
 :root {
-    /* Modo Oscuro (Por defecto y dominante) */
-    --bg-dark: #121212;
-    --text-dark: #EAEAEA;
-    --card-dark: #1A1A1A;
+    /* --- MODO OSCURO (Fondo principal, sin negro puro) --- */
+    --bg-dark: #121212;     /* Gris muy oscuro para el fondo general */
+    --card-dark: #1E1E1E;   /* Gris ligeramente más claro para dar volumen a las tarjetas */
+    --text-dark: #E2E8F0;   /* Blanco roto para evitar el "halo" y la fatiga visual */
     
-    /* Modo Claro (Beige/Dorado Premium en lugar de blanco puro) */
-    --bg-light: #F4F1EA; 
-    --text-light: #2C2A25;
-    --card-light: #EBE6DB;
-    
-    /* Acento (Dorado/Bronce Arquitectónico) */
-    --acento: #C5A059; 
+    /* --- COLOR DE ACENTO (Elige solo uno, el Terracota está activo) --- */
+    --acento: #E16036;      /* Opción 1: Terracota / Óxido (Activo) */
+    /* --acento: #38BDF8; */  /* Opción 2: Azul Acero / Planos */
+    /* --acento: #10B981; */  /* Opción 3: Verde / Sustentable */
+
+    /* --- MODO CLARO (Colores neutros y limpios) --- */
+    --bg-light: #F8FAFC;    /* Gris muy claro, excelente contraste */
+    --card-light: #FFFFFF;  /* Blanco puro para separar las tarjetas del fondo */
+    --text-light: #0F172A;  /* Gris pizarra oscuro para lectura cómoda */
 }
 
-/* --- ESTILOS BASE --- */
+/* --- 1. ESTILOS BASE --- */
 body {
     font-family: 'Inter', sans-serif;
     margin: 0;
@@ -23,6 +25,7 @@ body {
     overflow-x: hidden;
 }
 
+/* Tipografía de prestigio para los encabezados */
 h1, h2, h3, .logo-text {
     font-family: 'Playfair Display', serif;
     font-weight: 600;
@@ -33,9 +36,23 @@ body.light-mode {
     color: var(--text-light);
 }
 
-/* --- LOGO Y HEADER --- */
-.logo-container { display: flex; align-items: center; position: relative; height: 50px; width: 200px; }
-.logo-img { height: 40px; width: 40px; object-fit: contain; position: absolute; transition: opacity 0.4s ease; }
+/* --- 2. LOGO Y HEADER --- */
+.logo-container { 
+    display: flex; 
+    align-items: center; 
+    position: relative; 
+    height: 50px; 
+    width: 200px; 
+}
+
+.logo-img { 
+    height: 40px; 
+    width: 40px; 
+    object-fit: contain; 
+    position: absolute; 
+    transition: opacity 0.4s ease; 
+}
+
 .logo-dark { opacity: 1; } 
 .logo-light { opacity: 0; } 
 body.light-mode .logo-dark { opacity: 0; }
@@ -44,54 +61,70 @@ body.light-mode .logo-light { opacity: 1; }
 .logo-link { text-decoration: none; color: inherit; }
 .logo-text { margin-left: 50px; font-size: 1.4rem; letter-spacing: 3px; }
 
+/* Header con efecto "Glassmorphism" sutil */
 header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(18, 18, 18, 0.8);
-    backdrop-filter: blur(10px);
+    background: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-body.light-mode header {
-    background: rgba(244, 241, 234, 0.8); /* Transparencia adaptada al beige */
-    border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
-nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; }
+body.light-mode header {
+    background: rgba(248, 250, 252, 0.85);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+nav { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 1rem 2rem; 
+}
+
 .nav-right { display: flex; align-items: center; gap: 20px; }
 nav ul { list-style: none; display: flex; align-items: center; gap: 2rem; margin: 0; padding: 0;}
 nav a { text-decoration: none; color: inherit; font-weight: 400; font-size: 0.95rem; transition: color 0.3s ease; letter-spacing: 0.5px;}
 nav a:hover { color: var(--acento); }
 
+/* Botón de Contacto en la navegación */
 .btn-outline-nav {
     border: 1px solid var(--acento);
     padding: 0.5rem 1.2rem;
     border-radius: 4px;
     color: var(--acento) !important;
 }
+
 .btn-outline-nav:hover {
     background-color: var(--acento);
-    color: var(--bg-dark) !important;
+    color: #121212 !important; /* Texto oscuro sobre botón de color */
 }
+
 body.light-mode .btn-outline-nav:hover {
-    color: var(--bg-light) !important;
+    color: #FFFFFF !important;
 }
 
 #theme-toggle { background: none; border: none; cursor: pointer; font-size: 1.2rem; transition: transform 0.3s; }
 #theme-toggle:hover { transform: scale(1.1); }
 .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: inherit; cursor: pointer; margin-left: 10px; }
 
-/* --- SECCIÓN HERO --- */
+/* --- 3. SECCIÓN HERO --- */
 #hero { 
     padding: 8rem 2rem 6rem 2rem; 
     text-align: center; 
     max-width: 900px;
     margin: 0 auto;
 }
-#hero h1 { font-size: 3.5rem; margin-bottom: 1.5rem; line-height: 1.1; }
-#hero p { font-size: 1.2rem; color: #A0A0A0; margin-bottom: 2.5rem; font-weight: 300;} 
-body.light-mode #hero p { color: #5C584E; }
 
+#hero h1 { font-size: 3.5rem; margin-bottom: 1.5rem; line-height: 1.1; }
+#hero p { font-size: 1.2rem; color: #94A3B8; margin-bottom: 2.5rem; font-weight: 300;} 
+body.light-mode #hero p { color: #475569; }
+
+/* Llamados a la Acción (Botones) */
 .hero-ctas { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
 .btn-primary, .btn-secondary {
     padding: 0.8rem 2rem;
@@ -102,14 +135,17 @@ body.light-mode #hero p { color: #5C584E; }
     transition: all 0.3s ease;
     letter-spacing: 1px;
 }
+
 .btn-primary { background-color: var(--acento); color: #121212; border: 1px solid var(--acento); }
 .btn-primary:hover { background-color: transparent; color: var(--acento); }
+
 .btn-secondary { background-color: transparent; color: var(--text-dark); border: 1px solid rgba(255,255,255,0.2); }
-body.light-mode .btn-secondary { color: var(--text-light); border: 1px solid rgba(44,42,37,0.2); }
 .btn-secondary:hover { border-color: var(--text-dark); }
+
+body.light-mode .btn-secondary { color: var(--text-light); border: 1px solid rgba(0,0,0,0.2); }
 body.light-mode .btn-secondary:hover { border-color: var(--text-light); }
 
-/* --- TARJETAS DE PROYECTOS --- */
+/* --- 4. TARJETAS DE PROYECTOS --- */
 .section-title { text-align: center; margin-bottom: 4rem; font-size: 2.5rem; }
 .grid-proyectos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; padding: 0 2rem 4rem 2rem; max-width: 1200px; margin: 0 auto; }
 
@@ -118,71 +154,126 @@ body.light-mode .btn-secondary:hover { border-color: var(--text-light); }
     border-radius: 8px; 
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease; 
-    border: 1px solid rgba(255,255,255,0.03);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease, border-color 0.4s ease; 
+    border: 1px solid rgba(255,255,255,0.05); /* Borde sutil por defecto */
     cursor: pointer;
 }
-.card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); border-color: rgba(197, 160, 89, 0.3); }
 
-body.light-mode .card { background: var(--card-light); box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(197, 160, 89, 0.1); }
-body.light-mode .card:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: rgba(197, 160, 89, 0.5); }
+.card:hover { 
+    transform: translateY(-10px); 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5); 
+    border-color: var(--acento); /* Brilla con el color de acento al pasar el mouse */
+}
 
-/* --- GALERÍA Y VIDEO --- */
+body.light-mode .card { 
+    background: var(--card-light); 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+    border: 1px solid rgba(0,0,0,0.05); 
+}
+
+body.light-mode .card:hover { 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12); 
+    border-color: var(--acento); 
+}
+
+/* --- 5. GALERÍA DE IMÁGENES Y VIDEO --- */
 .imagen-contenedor { width: 100%; height: 280px; overflow: hidden; background-color: #000; position: relative; }
 .slideshow-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: crossfade 16s infinite; transition: opacity 0.5s ease; }
 
-.img-1 { animation-delay: 0s; } .img-2 { animation-delay: 4s; }
-.img-3 { animation-delay: 8s; } .img-4 { animation-delay: 12s; }
+.img-1 { animation-delay: 0s; } 
+.img-2 { animation-delay: 4s; }
+.img-3 { animation-delay: 8s; } 
+.img-4 { animation-delay: 12s; }
 
 @keyframes crossfade { 0% { opacity: 0; } 10% { opacity: 1; } 25% { opacity: 1; } 35% { opacity: 0; } 100% { opacity: 0; } }
 
-.hover-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.05); transition: opacity 0.4s ease, transform 0.6s ease; z-index: 10; }
-.card:hover .slideshow-img { opacity: 0; }
-.card:hover .hover-video { opacity: 1; transform: scale(1); } 
+.hover-video { 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    opacity: 0; 
+    transform: scale(1.05); 
+    transition: opacity 0.4s ease, transform 0.6s ease; 
+    z-index: 10; 
+}
 
-/* --- TEXTOS TARJETA --- */
+.card:hover .slideshow-img { opacity: 0; }
+.card:hover .hover-video { opacity: 1; transform: scale(1); } /* Efecto de inmersión */
+
+/* --- 6. TEXTOS DE LA TARJETA --- */
 .info { padding: 1.8rem; }
 .info h3 { margin: 0 0 0.8rem 0; font-size: 1.4rem; letter-spacing: 0.5px; }
-.info p { margin: 0; color: #A0A0A0; font-size: 0.95rem; line-height: 1.6; font-weight: 300; }
-body.light-mode .info p { color: #5C584E; }
+.info p { margin: 0; color: #94A3B8; font-size: 0.95rem; line-height: 1.6; font-weight: 300; }
+body.light-mode .info p { color: #475569; }
 
-/* --- SOBRE EL ESTUDIO & FOOTER --- */
-.about-container { max-width: 800px; margin: 4rem auto; padding: 4rem 2rem; text-align: center; border-top: 1px solid rgba(197, 160, 89, 0.2); }
+/* --- 7. SECCIÓN SOBRE EL ESTUDIO & FOOTER --- */
+.about-container { 
+    max-width: 800px; 
+    margin: 4rem auto; 
+    padding: 4rem 2rem; 
+    text-align: center; 
+    border-top: 1px solid rgba(255, 255, 255, 0.05); 
+}
+
+body.light-mode .about-container { border-top: 1px solid rgba(0, 0, 0, 0.05); }
+
 .about-container h2 { font-size: 2.2rem; margin-bottom: 1.5rem; }
-.about-container p { font-size: 1.1rem; line-height: 1.8; color: #A0A0A0; font-weight: 300; }
-body.light-mode .about-container p { color: #5C584E; }
+.about-container p { font-size: 1.1rem; line-height: 1.8; color: #94A3B8; font-weight: 300; }
+body.light-mode .about-container p { color: #475569; }
 
-footer { background-color: #0A0A0A; padding: 3rem 1rem; border-top: 1px solid rgba(255,255,255,0.05); }
-body.light-mode footer { background-color: #EBE6DB; border-top: 1px solid rgba(197, 160, 89, 0.2); }
-.footer-content { text-align: center; color: #888; }
+footer { 
+    background-color: #0A0A0A; /* Ligeramente más oscuro que el fondo para delimitar */
+    padding: 3rem 1rem; 
+    border-top: 1px solid rgba(255,255,255,0.05); 
+}
+
+body.light-mode footer { 
+    background-color: #F1F5F9; 
+    border-top: 1px solid rgba(0,0,0,0.05); 
+}
+
+.footer-content { text-align: center; color: #64748B; }
 .footer-content h3 { color: var(--acento); margin-bottom: 0.5rem; letter-spacing: 2px; }
 .copyright { font-size: 0.85rem; margin-top: 2rem; opacity: 0.6; }
 
-/* --- ANIMACIONES DE SCROLL --- */
-.fade-element { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+/* --- 8. ANIMACIONES DE INTERFAZ (Scroll Fade) --- */
+.fade-element { 
+    opacity: 0; 
+    transform: translateY(30px); 
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+}
+
 .fade-element.visible { opacity: 1; transform: translateY(0); }
 
-/* --- DISEÑO RESPONSIVO --- */
+/* --- 9. DISEÑO RESPONSIVO PARA MÓVILES --- */
 @media (max-width: 768px) {
     .mobile-menu-btn { display: block; }
     
+    /* Menú lateral que entra desde la derecha */
     nav ul {
         display: flex; 
         flex-direction: column;
         justify-content: center;
         position: fixed;
-        top: 0; left: 100%; 
-        width: 100%; height: 100vh;
+        top: 0; 
+        left: 100%; 
+        width: 100%; 
+        height: 100vh;
         background-color: var(--bg-dark);
         transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         z-index: -1; 
     }
+    
     body.light-mode nav ul { background-color: var(--bg-light); }
     nav ul.active { left: 0; }
     nav ul li { margin: 1.5rem 0; font-size: 1.5rem; }
     
     #hero { padding: 6rem 1.5rem 4rem 1.5rem; }
     #hero h1 { font-size: 2.4rem; }
+    
     .hero-ctas { flex-direction: column; width: 100%; }
     .btn-primary, .btn-secondary { width: 100%; text-align: center; box-sizing: border-box; }
     
