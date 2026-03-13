@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AYACEJ</title>
+    <title>AYACEJ | Despacho de Arquitectura y Construcción</title>
+    <meta name="description" content="Diseño arquitectónico, remodelaciones y visualización 3D. Soluciones integrales de construcción.">
+    
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -24,7 +27,7 @@
             <ul id="nav-links">
                 <li><a href="#proyectos">Proyectos</a></li>
                 <li><a href="#sobre-mi">Sobre mí</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#contacto" class="btn-outline-nav">Cotizar Proyecto</a></li>
             </ul>
             <button id="theme-toggle" title="Cambiar tema">🌓</button>
             <button id="menu-toggle" class="mobile-menu-btn">☰</button>
@@ -33,21 +36,27 @@
 </header>
 
     <section id="hero">
-        <h1>Arquitectura, Construcción y Visualización</h1>
-        <p>Soluciones técnicas y diseño funcional para proyectos integrales.</p>
+        <div class="hero-content fade-element">
+            <h1>Arquitectura, Construcción y Visualización</h1>
+            <p>Soluciones técnicas y diseño funcional para proyectos integrales.</p>
+            <div class="hero-ctas">
+                <a href="#proyectos" class="btn-primary">Explorar Obras</a>
+                <a href="#contacto" class="btn-secondary">Hablemos de tu idea</a>
+            </div>
+        </div>
     </section>
 
     <main id="proyectos">
-        <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">Proyectos Destacados</h2>
+        <h2 class="section-title fade-element">Proyectos Destacados</h2>
         <div class="grid-proyectos">
             
-            <div class="card" ontouchstart="">
+            <div class="card fade-element" ontouchstart="">
                 <div class="imagen-contenedor">
-                    <img src="proyecto1-img1.jpg" class="slideshow-img img-1" alt="Proyecto 1">
-                    <img src="proyecto1-img2.jpg" class="slideshow-img img-2" alt="Proyecto 1">
-                    <img src="proyecto1-img3.jpg" class="slideshow-img img-3" alt="Proyecto 1">
-                    <img src="proyecto1-img4.jpg" class="slideshow-img img-4" alt="Proyecto 1">
-                    <video src="proyecto1-video-web.mp4" class="hover-video" autoplay loop muted playsinline></video>
+                    <img src="proyecto1-img1.jpg" class="slideshow-img img-1" alt="Proyecto 1" loading="lazy">
+                    <img src="proyecto1-img2.jpg" class="slideshow-img img-2" alt="Proyecto 1" loading="lazy">
+                    <img src="proyecto1-img3.jpg" class="slideshow-img img-3" alt="Proyecto 1" loading="lazy">
+                    <img src="proyecto1-img4.jpg" class="slideshow-img img-4" alt="Proyecto 1" loading="lazy">
+                    <video src="proyecto1-video-web.mp4" class="hover-video" loop muted playsinline preload="none"></video>
                 </div>
                 <div class="info">
                     <h3>Proyecto Vivienda Digna</h3>
@@ -55,13 +64,13 @@
                 </div>
             </div>
 
-            <div class="card" ontouchstart="">
+            <div class="card fade-element" ontouchstart="">
                 <div class="imagen-contenedor">
-                    <img src="proyecto2-img1.jpg" class="slideshow-img img-1" alt="Proyecto 2">
-                    <img src="proyecto2-img2.jpg" class="slideshow-img img-2" alt="Proyecto 2">
-                    <img src="proyecto2-img3.jpg" class="slideshow-img img-3" alt="Proyecto 2">
-                    <img src="proyecto2-img4.jpg" class="slideshow-img img-4" alt="Proyecto 2">
-                    <video src="proyecto1-video-web.mp4" class="hover-video" autoplay loop muted playsinline></video>
+                    <img src="proyecto2-img1.jpg" class="slideshow-img img-1" alt="Proyecto 2" loading="lazy">
+                    <img src="proyecto2-img2.jpg" class="slideshow-img img-2" alt="Proyecto 2" loading="lazy">
+                    <img src="proyecto2-img3.jpg" class="slideshow-img img-3" alt="Proyecto 2" loading="lazy">
+                    <img src="proyecto2-img4.jpg" class="slideshow-img img-4" alt="Proyecto 2" loading="lazy">
+                    <video src="proyecto1-video-web.mp4" class="hover-video" loop muted playsinline preload="none"></video>
                 </div>
                 <div class="info">
                     <h3>Casa Corregidora129</h3>
@@ -69,27 +78,27 @@
                 </div>
             </div>
 
-            <div class="card" ontouchstart="">
+            <div class="card fade-element" ontouchstart="">
                 <div class="imagen-contenedor">
-                    <img src="proyecto3-img1.jpg" class="slideshow-img img-1" alt="Proyecto 3">
-                    <img src="proyecto3-img2.jpg" class="slideshow-img img-2" alt="Proyecto 3">
-                    <img src="proyecto3-img3.jpg" class="slideshow-img img-3" alt="Proyecto 3">
-                    <img src="proyecto3-img4.jpg" class="slideshow-img img-4" alt="Proyecto 3">
-                    <video src="proyecto3-video-web.mp4" class="hover-video" autoplay loop muted playsinline></video>
+                    <img src="proyecto3-img1.jpg" class="slideshow-img img-1" alt="Proyecto 3" loading="lazy">
+                    <img src="proyecto3-img2.jpg" class="slideshow-img img-2" alt="Proyecto 3" loading="lazy">
+                    <img src="proyecto3-img3.jpg" class="slideshow-img img-3" alt="Proyecto 3" loading="lazy">
+                    <img src="proyecto3-img4.jpg" class="slideshow-img img-4" alt="Proyecto 3" loading="lazy">
+                    <video src="proyecto3-video-web.mp4" class="hover-video" loop muted playsinline preload="none"></video>
                 </div>
                 <div class="info">
                     <h3>Diseños Conceptuales</h3>
-                    <p>>Proyectos de investigación arquitectónica, libertad creativa y experimentación formal.</p>
+                    <p>Proyectos de investigación arquitectónica, libertad creativa y experimentación formal.</p>
                 </div>
             </div>
 
-            <div class="card" ontouchstart="">
+            <div class="card fade-element" ontouchstart="">
                 <div class="imagen-contenedor">
-                    <img src="proyecto4-img1.jpg" class="slideshow-img img-1" alt="Proyecto 4">
-                    <img src="proyecto4-img2.jpg" class="slideshow-img img-2" alt="Proyecto 4">
-                    <img src="proyecto4-img3.jpg" class="slideshow-img img-3" alt="Proyecto 4">
-                    <img src="proyecto4-img4.jpg" class="slideshow-img img-4" alt="Proyecto 4">
-                    <video src="proyecto4-video-web.mp4" class="hover-video" autoplay loop muted playsinline></video>
+                    <img src="proyecto4-img1.jpg" class="slideshow-img img-1" alt="Proyecto 4" loading="lazy">
+                    <img src="proyecto4-img2.jpg" class="slideshow-img img-2" alt="Proyecto 4" loading="lazy">
+                    <img src="proyecto4-img3.jpg" class="slideshow-img img-3" alt="Proyecto 4" loading="lazy">
+                    <img src="proyecto4-img4.jpg" class="slideshow-img img-4" alt="Proyecto 4" loading="lazy">
+                    <video src="proyecto4-video-web.mp4" class="hover-video" loop muted playsinline preload="none"></video>
                 </div>
                 <div class="info">
                     <h3>Remodelación Residencial</h3>
@@ -97,55 +106,59 @@
                 </div>
             </div>
 
-            <div class="card" ontouchstart="">
+            <div class="card fade-element" ontouchstart="">
                 <div class="imagen-contenedor">
-                    <img src="proyecto5-img1.jpg" class="slideshow-img img-1" alt="Proyecto 5">
-                    <img src="proyecto5-img2.jpg" class="slideshow-img img-2" alt="Proyecto 5">
-                    <img src="proyecto5-img3.jpg" class="slideshow-img img-3" alt="Proyecto 5">
-                    <img src="proyecto5-img4.jpg" class="slideshow-img img-4" alt="Proyecto 5">
-                    <video src="proyecto5-video-web.mp4" class="hover-video" autoplay loop muted playsinline></video>
+                    <img src="proyecto5-img1.jpg" class="slideshow-img img-1" alt="Proyecto 5" loading="lazy">
+                    <img src="proyecto5-img2.jpg" class="slideshow-img img-2" alt="Proyecto 5" loading="lazy">
+                    <img src="proyecto5-img3.jpg" class="slideshow-img img-3" alt="Proyecto 5" loading="lazy">
+                    <img src="proyecto5-img4.jpg" class="slideshow-img img-4" alt="Proyecto 5" loading="lazy">
+                    <video src="proyecto5-video-web.mp4" class="hover-video" loop muted playsinline preload="none"></video>
                 </div>
                 <div class="info">
-                    <h3>Proyecto Paisajismo</h3>
-                    <p>Integración de áreas verdes y recorridos exteriores.</p>
+                    <h3>Granja Meli</h3>
+                    <p>Integración de áreas verdes en el espacio habitado.</p>
                 </div>
             </div>
 
-            <div class="card" ontouchstart="">
+            <div class="card fade-element" ontouchstart="">
                 <div class="imagen-contenedor">
-                    <img src="proyecto6-img1.jpg" class="slideshow-img img-1" alt="Proyecto 6">
-                    <img src="proyecto6-img2.jpg" class="slideshow-img img-2" alt="Proyecto 6">
-                    <img src="proyecto6-img3.jpg" class="slideshow-img img-3" alt="Proyecto 6">
-                    <img src="proyecto6-img4.jpg" class="slideshow-img img-4" alt="Proyecto 6">
-                    <video src="proyecto6-video-web.mp4" class="hover-video" autoplay loop muted playsinline></video>
+                    <img src="proyecto6-img1.jpg" class="slideshow-img img-1" alt="Proyecto 6" loading="lazy">
+                    <img src="proyecto6-img2.jpg" class="slideshow-img img-2" alt="Proyecto 6" loading="lazy">
+                    <img src="proyecto6-img3.jpg" class="slideshow-img img-3" alt="Proyecto 6" loading="lazy">
+                    <img src="proyecto6-img4.jpg" class="slideshow-img img-4" alt="Proyecto 6" loading="lazy">
+                    <video src="proyecto6-video-web.mp4" class="hover-video" loop muted playsinline preload="none"></video>
                 </div>
                 <div class="info">
                     <h3>Modelado 3D Integral</h3>
-                    <p>Detalles constructivos y recorridos virtuales.</p>
+                    <p>rRenders y recorridos virtuales fotorrealistas.</p>
                 </div>
             </div>
 
         </div>
     </main>
 
-    <section id="sobre-mi">
-        <div class="container" style="max-width: 800px; margin: 4rem auto; padding: 2rem; text-align: center;">
+    <section id="sobre-mi" class="fade-element">
+        <div class="container about-container">
             <h2>Sobre el Estudio</h2>
             <p>Somos una empresa familiar dedicada a la arquitectura, programación y mantenimiento técnico. Nos enfocamos en la precisión del detalle y la eficiencia constructiva.</p>
         </div>
     </section>
 
     <footer>
-        <p style="text-align: center; padding: 2rem; color: #64748b;">&copy; 2026 Ayacej - Sahuayo, Michoacán.</p>
+        <div class="footer-content">
+            <h3 style="font-family: 'Playfair Display', serif;">AYACEJ</h3>
+            <p>Sahuayo, Michoacán.</p>
+            <p class="copyright">&copy; 2026 Ayacej. Todos los derechos reservados.</p>
+        </div>
     </footer>
     
     <script>
-        // --- 1. TOGGLE DE TEMA (MODO CLARO/OSCURO) ---
+        // Toggle de tema
         document.getElementById('theme-toggle').addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
         });
 
-        // --- 2. MENÚ HAMBURGUESA PARA MÓVILES ---
+        // Menú móvil
         document.getElementById('menu-toggle').addEventListener('click', () => {
             document.getElementById('nav-links').classList.toggle('active');
         });
@@ -155,6 +168,26 @@
                 document.getElementById('nav-links').classList.remove('active');
             });
         });
+
+        // Videos al hacer Hover
+        document.querySelectorAll('.card').forEach(card => {
+            const video = card.querySelector('.hover-video');
+            card.addEventListener('mouseenter', () => { if(video) video.play(); });
+            card.addEventListener('mouseleave', () => { if(video) { video.pause(); video.currentTime = 0; } });
+        });
+
+        // Animación de Scroll (Fade In)
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-element').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
