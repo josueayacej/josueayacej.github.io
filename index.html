@@ -8,9 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-
-<header>
+<body class="dark-mode"> <header>
     <nav>
         <a href="index.html" class="logo-link">
             <div class="logo-container">
@@ -58,7 +56,7 @@
     <div class="grid-proyectos">
         <div class="card fade-element">
             <div class="imagen-contenedor">
-                <img src="proyecto1-img1.jpg" class="slideshow-img img-1" alt="Vivienda Digna" loading="lazy">
+                <img src="proyecto1-img1.jpg" class="slideshow-img img-1" alt="Vivienda Digna">
                 <video src="proyecto1-video-web.mp4" class="hover-video" loop muted playsinline></video>
             </div>
             <div class="info">
@@ -68,7 +66,7 @@
         </div>
         <div class="card fade-element">
             <div class="imagen-contenedor">
-                <img src="proyecto2-img1.jpg" class="slideshow-img img-1" alt="Casa Corregidora 129" loading="lazy">
+                <img src="proyecto2-img1.jpg" class="slideshow-img img-1" alt="Casa Corregidora 129">
                 <video src="proyecto1-video-web.mp4" class="hover-video" loop muted playsinline></video>
             </div>
             <div class="info">
@@ -78,17 +76,17 @@
         </div>
         <div class="card fade-element">
             <div class="imagen-contenedor">
-                <img src="proyecto3-img1.jpg" class="slideshow-img img-1" alt="Diseños Conceptuales" loading="lazy">
+                <img src="proyecto3-img1.jpg" class="slideshow-img img-1" alt="Diseños Conceptuales">
                 <video src="proyecto3-video-web.mp4" class="hover-video" loop muted playsinline></video>
             </div>
             <div class="info">
                 <h3>Diseños Conceptuales</h3>
-                <p>Proyectos de investigación arquitectónica y experimentación formal.</p>
+                <p>Investigación arquitectónica y experimentación formal.</p>
             </div>
         </div>
         <div class="card fade-element">
             <div class="imagen-contenedor">
-                <img src="proyecto4-img1.jpg" class="slideshow-img img-1" alt="Remodelación" loading="lazy">
+                <img src="proyecto4-img1.jpg" class="slideshow-img img-1" alt="Remodelación">
                 <video src="proyecto4-video-web.mp4" class="hover-video" loop muted playsinline></video>
             </div>
             <div class="info">
@@ -98,17 +96,17 @@
         </div>
         <div class="card fade-element">
             <div class="imagen-contenedor">
-                <img src="proyecto5-img1.jpg" class="slideshow-img img-1" alt="Paisajismo" loading="lazy">
+                <img src="proyecto5-img1.jpg" class="slideshow-img img-1" alt="Paisajismo">
                 <video src="proyecto5-video-web.mp4" class="hover-video" loop muted playsinline></video>
             </div>
             <div class="info">
                 <h3>Proyecto Paisajismo</h3>
-                <p>Integración de áreas verdes y recorridos exteriores.</p>
+                <p>Integración de áreas verdes y recorridos.</p>
             </div>
         </div>
         <div class="card fade-element">
             <div class="imagen-contenedor">
-                <img src="proyecto6-img1.jpg" class="slideshow-img img-1" alt="Modelado 3D" loading="lazy">
+                <img src="proyecto6-img1.jpg" class="slideshow-img img-1" alt="Modelado 3D">
                 <video src="proyecto6-video-web.mp4" class="hover-video" loop muted playsinline></video>
             </div>
             <div class="info">
@@ -122,7 +120,7 @@
 <section id="sobre-mi" class="fade-element">
     <div class="container about-container">
         <h2>Sobre el Estudio</h2>
-        <p>Somos una empresa familiar dedicada a la arquitectura, programación y mantenimiento técnico en Sahuayo, Michoacán.</p>
+        <p>Empresa familiar dedicada a la arquitectura y construcción en Sahuayo, Michoacán.</p>
     </div>
 </section>
 
@@ -142,8 +140,16 @@
 
 <script>
     const themeCheckbox = document.getElementById('theme-checkbox');
+    const body = document.body;
+
     themeCheckbox.addEventListener('change', () => {
-        document.body.classList.toggle('light-mode');
+        if(themeCheckbox.checked) {
+            body.classList.remove('dark-mode');
+            body.classList.add('light-mode');
+        } else {
+            body.classList.remove('light-mode');
+            body.classList.add('dark-mode');
+        }
     });
 
     const menuToggle = document.getElementById('menu-toggle');
