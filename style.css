@@ -1,371 +1,79 @@
 :root {
-    /* --- MODO OSCURO (Azules Noche / Midnight Blue) --- */
     --bg-dark: #0B1120;     
     --card-dark: rgba(30, 41, 59, 0.65); 
     --text-dark: #CBD5E1;   
-    
-    /* --- COLOR DE ACENTO --- */
     --acento: #38BDF8;      
-
-    /* --- MODO CLARO (Azules Glaciares / Celestes) --- */
     --bg-light: #F0F9FF;    
     --card-light: rgba(255, 255, 255, 0.7); 
     --text-light: #0F172A;  
 }
 
-/* --- REGLAS UNIVERSALES PARA EVITAR SCROLL HORIZONTAL --- */
-*, *::before, *::after {
-    box-sizing: border-box;
-}
+/* EVITAR SCROLL LATERAL */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: hidden; width: 100%; max-width: 100vw; margin: 0; padding: 0; }
 
-html, body {
-    overflow-x: hidden; 
-    width: 100%;
-    max-width: 100vw;
-    margin: 0;
-    padding: 0;
-}
+body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-dark); transition: background-color 0.4s ease; }
+h1, h2, h3, .logo-text { font-family: 'Playfair Display', serif; }
+body.light-mode { background-color: var(--bg-light); color: var(--text-light); }
 
-/* --- 1. ESTILOS BASE --- */
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-dark);
-    color: var(--text-dark);
-    transition: background-color 0.4s ease, color 0.4s ease;
-}
+header { position: sticky; top: 0; z-index: 1000; background: rgba(11, 17, 32, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+body.light-mode header { background: rgba(240, 249, 255, 0.8); border-bottom: 1px solid rgba(2, 132, 199, 0.1); }
 
-h1, h2, h3, .logo-text {
-    font-family: 'Playfair Display', serif;
-    font-weight: 600;
-}
-
-body.light-mode {
-    background-color: var(--bg-light);
-    color: var(--text-light);
-}
-
-/* --- 2. LOGO Y HEADER --- */
-.logo-container { 
-    display: flex; 
-    align-items: center; 
-    position: relative; 
-    height: 50px; 
-    width: 200px; 
-}
-
-.logo-img { 
-    height: 40px; 
-    width: 40px; 
-    object-fit: contain; 
-    position: absolute; 
-    transition: opacity 0.4s ease; 
-}
-
-.logo-dark { opacity: 1; } 
-.logo-light { opacity: 0; } 
-body.light-mode .logo-dark { opacity: 0; }
+nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; }
+.logo-container { display: flex; align-items: center; height: 50px; width: 200px; position: relative; }
+.logo-img { height: 40px; position: absolute; transition: opacity 0.4s; }
+.logo-light, body.light-mode .logo-dark { opacity: 0; }
 body.light-mode .logo-light { opacity: 1; }
-
+.logo-text { margin-left: 50px; font-size: 1.4rem; letter-spacing: 3px; font-weight: 700; }
 .logo-link { text-decoration: none; color: inherit; }
-.logo-text { margin-left: 50px; font-size: 1.4rem; letter-spacing: 3px; }
 
-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: rgba(11, 17, 32, 0.8);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    transition: background-color 0.4s ease, border-color 0.4s ease;
-}
+/* BOTÓN DE TEMA ANIMADO */
+.theme-toggle-wrapper { position: relative; z-index: 1005; }
+.toggle-checkbox { opacity: 0; position: absolute; }
+.toggle-label { display: flex; align-items: center; justify-content: space-between; width: 60px; height: 32px; background: #1e293b; border-radius: 20px; position: relative; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); }
+.toggle-icons { display: flex; justify-content: space-between; width: 100%; padding: 0 6px; color: #cbd5e1; }
+.toggle-thumb { width: 24px; height: 24px; background: white; border-radius: 50%; position: absolute; left: 4px; transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
+.icon { width: 18px; height: 18px; }
+.sun-house { opacity: 0; }
+.toggle-checkbox:checked + .toggle-label { background: #cbd5e1; }
+.toggle-checkbox:checked + .toggle-label .toggle-thumb { transform: translateX(28px); background: #0284C7; }
+.toggle-checkbox:checked + .toggle-label .sun-house { opacity: 1; color: #0284C7; }
+.toggle-checkbox:checked + .toggle-label .moon-house { opacity: 0; }
 
-body.light-mode header {
-    background: rgba(240, 249, 255, 0.8);
-    border-bottom: 1px solid rgba(2, 132, 199, 0.1);
-}
+.mobile-menu-btn { background: none; border: none; font-size: 1.5rem; color: inherit; cursor: pointer; display: none; z-index: 1005; position: relative; }
 
-nav { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    max-width: 1200px; 
-    margin: 0 auto; 
-    padding: 1rem 2rem; 
-}
-
-.nav-right { display: flex; align-items: center; gap: 20px; }
-nav ul { list-style: none; display: flex; align-items: center; gap: 2rem; margin: 0; padding: 0;}
-nav a { text-decoration: none; color: inherit; font-weight: 400; font-size: 0.95rem; transition: color 0.3s ease; letter-spacing: 0.5px;}
-nav a:hover { color: var(--acento); }
-
-.btn-outline-nav {
-    border: 1px solid var(--acento);
-    padding: 0.5rem 1.2rem;
-    border-radius: 4px;
-    color: var(--acento) !important;
-}
-
-.btn-outline-nav:hover {
-    background-color: var(--acento);
-    color: #0B1120 !important; 
-}
-
-body.light-mode .btn-outline-nav {
-    color: #0284C7 !important; 
-    border-color: #0284C7;
-}
-
-body.light-mode .btn-outline-nav:hover {
-    background-color: #0284C7;
-    color: #FFFFFF !important;
-}
-
-/* Evita que el menú tape los botones en móvil */
-#theme-toggle, .mobile-menu-btn { 
-    background: none; 
-    border: none; 
-    cursor: pointer; 
-    font-size: 1.2rem; 
-    transition: transform 0.3s; 
-    position: relative;
-    z-index: 1005; 
-}
-
-#theme-toggle:hover { transform: scale(1.1); }
-.mobile-menu-btn { display: none; font-size: 1.5rem; color: inherit; margin-left: 10px; }
-
-/* --- 3. SECCIÓN HERO --- */
-#hero { 
-    padding: 8rem 2rem 6rem 2rem; 
-    text-align: center; 
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-#hero h1 { font-size: 3.5rem; margin-bottom: 1.5rem; line-height: 1.1; }
-#hero p { font-size: 1.2rem; color: #94A3B8; margin-bottom: 2.5rem; font-weight: 300;} 
-body.light-mode #hero p { color: #334155; }
-
-.hero-ctas { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-.btn-primary, .btn-secondary {
-    padding: 0.8rem 2rem;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    letter-spacing: 1px;
-}
-
-.btn-primary { background-color: var(--acento); color: #0B1120; border: 1px solid var(--acento); }
-.btn-primary:hover { background-color: transparent; color: var(--acento); }
-
-body.light-mode .btn-primary { background-color: #0284C7; color: #FFFFFF; border-color: #0284C7; }
-body.light-mode .btn-primary:hover { background-color: transparent; color: #0284C7; }
-
-.btn-secondary { background-color: transparent; color: var(--text-dark); border: 1px solid rgba(255,255,255,0.2); }
-.btn-secondary:hover { border-color: var(--text-dark); background-color: rgba(255,255,255,0.05); }
-
-body.light-mode .btn-secondary { color: var(--text-light); border: 1px solid rgba(15,23,42,0.2); }
-body.light-mode .btn-secondary:hover { border-color: var(--text-light); background-color: rgba(15,23,42,0.05); }
-
-/* --- 4. TARJETAS DE PROYECTOS --- */
-.section-title { text-align: center; margin-bottom: 4rem; font-size: 2.5rem; }
-.grid-proyectos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; padding: 0 2rem 4rem 2rem; max-width: 1200px; margin: 0 auto; }
-
-.card { 
-    background: var(--card-dark); 
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-radius: 8px; 
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4); 
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease, border-color 0.4s ease; 
-    border: 1px solid rgba(255,255,255,0.08); 
-    cursor: pointer;
-}
-
-.card:hover { 
-    transform: translateY(-10px); 
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(56, 189, 248, 0.15); 
-    border-color: var(--acento); 
-}
-
-body.light-mode .card { 
-    background: var(--card-light); 
-    box-shadow: 0 10px 30px rgba(2, 132, 199, 0.08); 
-    border: 1px solid rgba(255,255,255,0.5); 
-}
-
-body.light-mode .card:hover { 
-    box-shadow: 0 20px 40px rgba(2, 132, 199, 0.15); 
-    border-color: #0284C7; 
-}
-
-/* --- 5. GALERÍA DE IMÁGENES Y VIDEO --- */
-.imagen-contenedor { width: 100%; height: 280px; overflow: hidden; background-color: #060913; position: relative; }
-.slideshow-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: crossfade 16s infinite; transition: opacity 0.5s ease; }
-
-.img-1 { animation-delay: 0s; } 
-.img-2 { animation-delay: 4s; }
-.img-3 { animation-delay: 8s; } 
-.img-4 { animation-delay: 12s; }
-
-@keyframes crossfade { 0% { opacity: 0; } 10% { opacity: 1; } 25% { opacity: 1; } 35% { opacity: 0; } 100% { opacity: 0; } }
-
-.hover-video { 
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    opacity: 0; 
-    transform: scale(1.05); 
-    transition: opacity 0.4s ease, transform 0.6s ease; 
-    z-index: 10; 
-}
-
-.card:hover .slideshow-img { opacity: 0; }
-.card:hover .hover-video { opacity: 1; transform: scale(1); } 
-
-/* --- 6. TEXTOS DE LA TARJETA --- */
+/* HERO Y CARDS */
+#hero { padding: 8rem 2rem 6rem; text-align: center; }
+#hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; }
+.grid-proyectos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; padding: 0 2rem 4rem; max-width: 1200px; margin: 0 auto; }
+.card { background: var(--card-dark); backdrop-filter: blur(16px); border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); transition: 0.4s; cursor: pointer; }
+.card:hover { transform: translateY(-10px); border-color: var(--acento); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+.imagen-contenedor { width: 100%; height: 280px; position: relative; background: #000; overflow: hidden; }
+.slideshow-img { position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: crossfade 16s infinite; }
+.img-1 { animation-delay: 0s; } .img-2 { animation-delay: 4s; }
+@keyframes crossfade { 0%, 35% { opacity: 0; } 10%, 25% { opacity: 1; } }
+.hover-video { position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: 0.4s; z-index: 10; }
+.card:hover .hover-video { opacity: 1; }
 .info { padding: 1.8rem; }
-.info h3 { margin: 0 0 0.8rem 0; font-size: 1.4rem; letter-spacing: 0.5px; }
-.info p { margin: 0; color: #94A3B8; font-size: 0.95rem; line-height: 1.6; font-weight: 300; }
-body.light-mode .info p { color: #334155; }
 
-/* --- 7. SECCIÓN SOBRE EL ESTUDIO --- */
-.about-container { 
-    max-width: 800px; 
-    margin: 4rem auto; 
-    padding: 4rem 2rem; 
-    text-align: center; 
-    border-top: 1px solid rgba(255, 255, 255, 0.05); 
-}
+/* CONTACTO */
+.contacto-container { max-width: 800px; margin: 4rem auto; padding: 4rem 2rem; text-align: center; background: var(--card-dark); backdrop-filter: blur(16px); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); }
+.contacto-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; }
+.contacto-btn { display: flex; align-items: center; gap: 10px; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+.whatsapp-btn { background: #25D366; color: #000; }
+.email-btn { background: var(--acento); color: #0B1120; }
+body.light-mode .email-btn { background: #0284C7; color: #fff; }
 
-body.light-mode .about-container { border-top: 1px solid rgba(2, 132, 199, 0.1); }
-
-.about-container h2 { font-size: 2.2rem; margin-bottom: 1.5rem; }
-.about-container p { font-size: 1.1rem; line-height: 1.8; color: #94A3B8; font-weight: 300; }
-body.light-mode .about-container p { color: #334155; }
-
-/* --- 8. SECCIÓN DE CONTACTO --- */
-.contacto-container {
-    max-width: 800px;
-    margin: 0 auto 4rem auto;
-    padding: 4rem 2rem;
-    text-align: center;
-    background: var(--card-dark);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-
-body.light-mode .contacto-container {
-    background: var(--card-light);
-    border: 1px solid rgba(2, 132, 199, 0.1);
-    box-shadow: 0 10px 30px rgba(2, 132, 199, 0.08);
-}
-
-.contacto-container h2 { font-size: 2.2rem; margin-bottom: 1rem; }
-.contacto-container p { font-size: 1.1rem; color: #94A3B8; margin-bottom: 2.5rem; }
-body.light-mode .contacto-container p { color: #334155; }
-
-.contacto-links {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-}
-
-.contacto-btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1.1rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.contacto-btn:hover { transform: translateY(-5px); }
-
-/* Botón WhatsApp */
-.whatsapp-btn { background-color: #25D366; color: #000000; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
-.whatsapp-btn:hover { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); }
-
-/* Botón Correo */
-.email-btn { background-color: var(--acento); color: #0B1120; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); }
-.email-btn:hover { box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5); }
-
-body.light-mode .email-btn { background-color: #0284C7; color: #FFFFFF; box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3); }
-
-/* --- 9. FOOTER --- */
-footer { 
-    background-color: #060913; 
-    padding: 3rem 1rem; 
-    border-top: 1px solid rgba(255,255,255,0.05); 
-}
-
-body.light-mode footer { 
-    background-color: #E0F2FE; 
-    border-top: 1px solid rgba(255,255,255,0.5); 
-}
-
-.footer-content { text-align: center; color: #64748B; }
-.footer-content h3 { color: var(--acento); margin-bottom: 0.5rem; letter-spacing: 2px; }
-body.light-mode .footer-content h3 { color: #0284C7; }
-.copyright { font-size: 0.85rem; margin-top: 2rem; opacity: 0.6; }
-
-/* --- 10. ANIMACIONES DE INTERFAZ --- */
-.fade-element { 
-    opacity: 0; 
-    transform: translateY(30px); 
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
-}
-
+.fade-element { opacity: 0; transform: translateY(30px); transition: 0.8s; }
 .fade-element.visible { opacity: 1; transform: translateY(0); }
 
-/* --- 11. DISEÑO RESPONSIVO PARA MÓVILES --- */
+/* MOBILE */
 @media (max-width: 768px) {
     .mobile-menu-btn { display: block; }
-    
-    nav ul {
-        display: flex; 
-        flex-direction: column;
-        justify-content: center;
-        position: fixed;
-        top: 0; 
-        left: 0; 
-        width: 100%; 
-        height: 100vh;
-        background-color: rgba(11, 17, 32, 0.95);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        transform: translateX(100%); 
-        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        z-index: 999; 
-    }
-    
-    body.light-mode nav ul { background-color: rgba(240, 249, 255, 0.95); }
+    nav ul { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(11, 17, 32, 0.98); display: flex; flex-direction: column; justify-content: center; transform: translateX(100%); transition: 0.4s; }
     nav ul.active { transform: translateX(0); }
-    nav ul li { margin: 1.5rem 0; font-size: 1.5rem; }
-    
-    #hero { padding: 6rem 1.5rem 4rem 1.5rem; }
+    nav ul li { margin: 1.5rem 0; font-size: 1.5rem; text-align: center; }
+    .grid-proyectos { gap: 2rem; }
+    .contacto-links { flex-direction: column; }
     #hero h1 { font-size: 2.4rem; }
-    
-    .hero-ctas { flex-direction: column; width: 100%; }
-    .btn-primary, .btn-secondary { width: 100%; text-align: center; box-sizing: border-box; }
-    
-    .grid-proyectos { gap: 2rem; padding: 0 1.5rem 3rem 1.5rem; }
-    .section-title { font-size: 2rem; }
-    
-    .contacto-links { flex-direction: column; width: 100%; }
-    .contacto-btn { justify-content: center; width: 100%; }
 }
