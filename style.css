@@ -1,13 +1,14 @@
 :root {
     --bg-dark: #0B1120;     
     --card-dark: rgba(30, 41, 59, 0.65); 
-    --text-dark: #CBD5E1;   
+    --text-dark: #f1f5f9;   
     --acento: #38BDF8;      
     --bg-light: #F0F9FF;    
     --card-light: rgba(255, 255, 255, 0.9); 
     --text-light: #0F172A;  
 }
 
+/* --- REGLAS UNIVERSALES --- */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { overflow-x: hidden; width: 100%; margin: 0; padding: 0; }
 
@@ -16,7 +17,7 @@ body.dark-mode { background-color: var(--bg-dark); color: var(--text-dark); }
 body.light-mode { background-color: var(--bg-light); color: var(--text-light); }
 
 h1, h2, h3 { font-family: 'Playfair Display', serif; }
-a { text-decoration: none; color: inherit; } /* Evita colores morados por defecto */
+a { text-decoration: none; color: inherit !important; } /* Fuerza color neutro */
 
 /* --- HEADER (FIX LOGO) --- */
 header { 
@@ -30,7 +31,7 @@ body.light-mode header { background: rgba(240, 249, 255, 0.9); border-bottom-col
 
 nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; }
 
-.logo-link { display: flex; align-items: center; color: inherit !important; }
+.logo-link { display: flex; align-items: center; }
 .logo-container { 
     display: flex; align-items: center; position: relative; 
     padding-left: 45px; /* Espacio fijo para el logo */
@@ -50,17 +51,26 @@ body.dark-mode .logo-dark, body.light-mode .logo-light { opacity: 1; }
 /* --- NAVEGACIÓN --- */
 .nav-right { display: flex; align-items: center; gap: 2rem; }
 nav ul { display: flex; list-style: none; gap: 2rem; margin: 0; padding: 0; }
-nav ul li a { font-size: 0.95rem; font-weight: 500; color: inherit !important; }
+nav ul li a { font-size: 0.95rem; font-weight: 500; }
 nav ul li a:hover { color: var(--acento) !important; }
 
-.btn-outline-nav { 
-    border: 1px solid var(--acento); padding: 0.6rem 1.2rem; border-radius: 6px; 
-    color: var(--acento) !important; 
-}
+.btn-outline-nav { border: 1px solid var(--acento); padding: 0.6rem 1.2rem; border-radius: 6px; color: var(--acento) !important; }
+.btn-outline-nav:hover { background: var(--acento); color: #000 !important; }
 
-/* --- HERO (FIX BOTONES) --- */
+/* Toggle Tema */
+.theme-toggle-wrapper { position: relative; z-index: 1005; }
+.toggle-checkbox { opacity: 0; position: absolute; }
+.toggle-label { display: flex; align-items: center; width: 64px; height: 34px; background: #1e293b; border-radius: 20px; cursor: pointer; position: relative; border: 1px solid rgba(255,255,255,0.1); }
+.toggle-thumb { width: 26px; height: 26px; background: white; border-radius: 50%; position: absolute; left: 4px; transition: 0.4s; z-index: 2; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+.toggle-icons { display: flex; justify-content: space-between; width: 100%; padding: 0 8px; font-size: 14px; }
+.toggle-checkbox:checked + .toggle-label { background: #cbd5e1; }
+.toggle-checkbox:checked + .toggle-label .toggle-thumb { transform: translateX(30px); background: #0284C7; }
+
+.mobile-menu-btn { display: none; background: none; border: none; font-size: 1.8rem; color: inherit; cursor: pointer; position: relative; z-index: 1005; }
+
+/* --- SECCIONES --- */
 #hero { padding: 12rem 2rem; text-align: center; }
-#hero h1 { font-size: 4rem; margin-bottom: 1.5rem; }
+#hero h1 { font-size: 4rem; margin-bottom: 1.5rem; max-width: 900px; margin: 0 auto 1.5rem; }
 .hero-ctas { display: flex; justify-content: center; gap: 1.5rem; }
 
 .btn-primary { background: var(--acento); color: #000 !important; padding: 1rem 2.5rem; border-radius: 8px; font-weight: 700; }
@@ -95,8 +105,23 @@ body.light-mode .card { background: var(--card-light); border-color: rgba(0,0,0,
 
 .hover-video { position: absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; opacity:0; transition: 0.5s; z-index: 10; }
 .card:hover .hover-video { opacity: 1; transform: scale(1.05); }
+.info { padding: 2.2rem; }
 
-/* --- STATUS DOT (LUZ VERDE) --- */
+/* --- SOBRE MI Y CONTACTO (CENTRADO) --- */
+.about-container { max-width: 800px; margin: 6rem auto; padding: 4rem 2rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+.about-container h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+.about-container p { font-size: 1.2rem; line-height: 1.8; opacity: 0.8; margin: 0 auto; }
+
+.contacto-container { text-align: center; padding: 5rem 2rem; margin: 5rem auto; max-width: 850px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(10px); }
+body.dark-mode .contacto-container { background: var(--card-dark); }
+body.light-mode .contacto-container { background: var(--card-light); border-color: rgba(2, 132, 199, 0.1); }
+.contacto-desc { font-size: 1.15rem; line-height: 1.6; margin: 1.5rem auto 2.5rem; max-width: 600px; }
+.contacto-links { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; }
+.contacto-btn { padding: 1.2rem 2.5rem; border-radius: 12px; font-weight: 700; color: #000 !important; }
+.whatsapp-btn { background: #25D366; }
+.email-btn { background: var(--acento); }
+
+/* STATUS DOT (LUZ VERDE) */
 .disponibilidad { margin-top: 2.5rem; display: flex; align-items: center; justify-content: center; gap: 10px; opacity: 0.8; }
 .status-dot { 
     width: 12px; height: 12px; background-color: #22c55e; border-radius: 50%; 
@@ -110,8 +135,6 @@ body.light-mode .card { background: var(--card-light); border-color: rgba(0,0,0,
 }
 
 /* --- RESPONSIVO --- */
-.mobile-menu-btn { display: none; background: none; border: none; font-size: 1.8rem; color: inherit; cursor: pointer; z-index: 1005; }
-
 @media (max-width: 992px) {
     .mobile-menu-btn { display: block; }
     nav ul { 
@@ -122,7 +145,7 @@ body.light-mode .card { background: var(--card-light); border-color: rgba(0,0,0,
     body.dark-mode nav ul { background: var(--bg-dark); }
     body.light-mode nav ul { background: var(--bg-light); }
     nav ul.active { transform: translateX(0); }
-    .logo-text { font-size: 1.2rem; }
+    .logo-text { font-size: 1.1rem; }
     #hero h1 { font-size: 2.5rem; }
     .contacto-links { flex-direction: column; gap: 1.5rem; }
 }
